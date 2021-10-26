@@ -6,7 +6,7 @@ def scanline(png, interlace):
     for d in interlace:
         if d[0] == 0:
             for r, c in d[1]:
-                pixel = png.get_pixel(r, c)
+                pixel = png.get_pixel(r, c)[:png.nsample]
                 b += bytes(pixel)
             yield 0, bytes(b)
             b.clear()

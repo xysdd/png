@@ -133,7 +133,8 @@ class Deflate:
             self.fin_byte()
         return bytes(self.code_buffer)
 
-    def fixed_huff(self, lit):
+    @staticmethod
+    def fixed_huff(lit):
         if lit < 144:
             return 0x30 + lit, 8, True
         elif lit < 256:
@@ -143,7 +144,8 @@ class Deflate:
         else:
             return 0xc0 + (lit - 280), 8, True
 
-    def len_code(self, length):
+    @staticmethod
+    def len_code(length):
         if length == 258:
             return 285, (0, 0)
         elif length <= 10:
@@ -155,7 +157,8 @@ class Deflate:
                 if length < nseg:
                     return 261 + i * 4 + ((length - seg) >> i), ((length - seg) & ((1 << i) - 1), i)
 
-    def dist_code(self, dist):
+    @staticmethod
+    def dist_code(dist):
         if dist <= 4:
             return dist - 1, (0, 0)
         else:

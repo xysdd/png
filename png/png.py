@@ -9,6 +9,8 @@ signature = b'\x89PNG\r\n\x1a\n'
 
 
 class PNG:
+    colour_sample = {0: 1, 2: 3, 3: 1, 4: 2, 6: 4}
+
     def __init__(self, width, height, get_pixel=None, bit_depth=8, colour_type=2, interlace_method=0):
         self.width = width
         self.height = height
@@ -16,7 +18,8 @@ class PNG:
         self.bit_depth = bit_depth
         self.colour_type = colour_type
         self.interlace_method = interlace_method
-        self.pallete = None
+        self.palette = None
+        self.nsample = PNG.colour_sample[colour_type]
 
 
 def chunk_ihdr(png):

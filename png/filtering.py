@@ -6,7 +6,7 @@ def filter_(png, scanline):
             filt_lines = []
             sa = []
             for t in range(5):
-                fl, s = filt_list[t](line, last_line, png.bit_depth // 8 * 3)
+                fl, s = filt_list[t](line, last_line, png.bit_depth // 8 * png.nsample)
                 filt_lines.append(fl)
                 sa.append(s)
             ts = sa.index(min(sa))
